@@ -11,7 +11,7 @@ echo form_input(array('type'=>'email','name'=>'txtEmail','required'=>'required')
 
 echo form_label('Mot de passe','lblMotDePasse');
 
-echo form_password('txtMotDePasse',array('required'=>'required'));
+echo form_password(array('name'=>'txtMotDePasse','required'=>'required'));
 
 echo form_submit('btnconnect', 'Se connecter');
 
