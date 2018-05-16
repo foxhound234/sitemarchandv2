@@ -1,6 +1,8 @@
 <html>
 <head>
     <title>Blog simple</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -20,3 +22,5 @@
 
         <a href="<?php echo site_url('Visiteur/afficherlesproduits') ?>">Lister les produits</a>&nbsp;&nbsp;
     <a href="<?php echo site_url('Visiteur/affichelescategorie') ?>">Lister les categories </a>&nbsp;&nbsp;
+</body>
+</html>

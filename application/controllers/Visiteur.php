@@ -14,6 +14,7 @@ class Visiteur extends CI_Controller{
        $this->load->model('modeleclient'); // chargement modèle, obligatoire
  
        $this->load->model('modeleproduit');
+       $this->load->model('modelecategorie');
 
        $this->load->helper('form');
 
@@ -127,7 +128,7 @@ class Visiteur extends CI_Controller{
   $DonneesInjectees['TitredelaPage']='les Catégorie';
   $this->load->view('templates/entete');
   $this->load->view('visiteur/listerlesCategorie',$DonneesInjectees);
-   $this->load->view('templates/entete');
+   $this->load->view('templates/piedDePage');
  }
  public function afficherlesproduitscategorie($nocategorie=null)
  {
@@ -158,7 +159,7 @@ class Visiteur extends CI_Controller{
 
   $this->load->view('templates/entete');
   $this->load->view('visiteur/listerlesproduit',$DonneesInjectees);
-   $this->load->view('templates/entete');
+   $this->load->view('templates/piedDePage');
 
  }
 
