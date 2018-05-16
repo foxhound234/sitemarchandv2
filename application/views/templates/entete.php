@@ -22,5 +22,6 @@
 
         <a href="<?php echo site_url('Visiteur/afficherlesproduits') ?>">Lister les produits</a>&nbsp;&nbsp;
     <a href="<?php echo site_url('Visiteur/affichelescategorie') ?>">Lister les categories </a>&nbsp;&nbsp;
+    <a href="<?php echo site_url('Visiteur/affichagedepanier') ?>">affiché le panier </a>&nbsp;&nbsp;
 </body>
 </html>

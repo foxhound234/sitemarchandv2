@@ -80,20 +80,26 @@ class Visiteur extends CI_Controller{
       }
      else
      {
-      $this->load->view('templates/Entete');
-      $this->load->view('admin/ajouterproduit', $DonneesInjectees);
-      $this->load->view('templates/PiedDePage');
-      $donneesAInserer['insertion'] =array(
-        'quantite'=>$this->input->post('txtquantitestock')
+      $insertion=array(
+        'rowid'  =>$DonneesInjectees['unProduit']['NOPRODUIT'],
+        'qty'    =>$this->input->post('txtquantitestock'),
+        'price'  => $DonneesInjectees['unProduit']['PRIXHT'],
+        'name'    =>  $DonneesInjectees['unProduit']['LIBELLE']
       );
-     $donneesAInserer['leproduit']=$DonneesInjectees['unProduit'].$donneesAInserer['insertion'];
-     $this->cart->insert($donneesAInserer['leproduit']);
+   
+     $this->cart->insert($insertion);
      $this->load->helper('url');
-     $this->load->view('Visiteur/insertionReussie');
+     $this->load->view('visiteur/insertionReussie');
       }
     
     }
-
+    public function affichagedepanier()
+    {
+      $DonneesInjectees['TitreDeLaPage'] ='Panier';
+      $this->load->view('templates/entete');
+      $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
+      $this->load->view('templates/piedDePage');
+    }
     public function afficherlesproduits()
     {
      $config=array();
@@ -131,9 +137,9 @@ class Visiteur extends CI_Controller{
    $this->load->view('templates/piedDePage');
  }
  public function afficherlesproduitscategorie($nocategorie=null)
- {
+ { 
   $config=array();
-  $config["base_url"] = site_url('visiteur/listerLesproduit');
+  $config["base_url"] = site_url('visiteur/listerLesproduitcatego');
 
   $config["total_rows"] =$this->modeleproduit->nombredeproduitcatego($nocategorie);
 
@@ -152,7 +158,7 @@ class Visiteur extends CI_Controller{
   $noPage = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
   $DonneesInjectees['TitreDeLaPage'] = 'Les produit de la catégorie';
-
+  $DonneesInjectees['LaCategorie']= $this->modelecategorie->Retournercategorie($nocategorie);
   $DonneesInjectees["LesProduits"]=$this->modeleproduit-> retournerproduitcatego($nocategorie,$config["per_page"],$noPage);
 
   $DonneesInjectees["lienspagination"]=$this->pagination->create_links();
