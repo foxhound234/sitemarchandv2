@@ -64,18 +64,17 @@ class Visiteur extends CI_Controller{
 
     public function rechercheproduit()
     {
+      $this->load->helper('form');
       if ($this->input->post('btnajouter'))
     {
   $leproduit=array(
     'produit'=>$this->input->post('txtlibelle'));
        $produit=serialize($leproduit);
   $DonneesInjectees['lesproduits']= $this->modeleproduit->rechercheproduit($produit);
-   if (empty($DonneesInjectees['lesproduits']))
-   {
-    show_404();
-   }
    $DonneesInjectees['Titredelapage']='résultat de la recherche';
+   $this->load->view('templates/Entete');
    $this->load->view('visiteur/afficherecherche',$DonneesInjectees);
+   $this->load->view('templates/PiedDePage');
   }
 }
     public function VoirunProduit($NOPRODUIT=false)
@@ -86,6 +85,8 @@ class Visiteur extends CI_Controller{
       {
        show_404();
       }
+
+
       $DonneesInjectees['Leproduit']=$this->modeleproduit->retournerproduit($NOPRODUIT);
        $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
       $Libelle=$Produitretourne['LIBELLE'];
@@ -96,10 +97,12 @@ class Visiteur extends CI_Controller{
           'id'=>$NOPRODUIT,
           'qty' => 1,
           'price'=>$prixproduit,
-          'name'=>$Libelle);
-          var_dump($insertion);
+          'name'=>$Libelle
+             );
           $this->cart->insert($insertion);
+          $this->load->view('templates/Entete');
           $this->load->view('visiteur/insertionReussie');
+          $this->load->view('templates/PiedDePage');
       }
       else
       {

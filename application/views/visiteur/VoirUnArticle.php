@@ -14,7 +14,7 @@
 
   echo '<p>'.$Leproduit['DETAIL'].'</p>';
 
-  echo form_open('Visiteur\rechercheproduit');
+  echo form_open('Visiteur\VoirunProduit/'.$Leproduit['NOPRODUIT']);
 
    echo form_submit('btnajouter', 'ajouter').'<BR>';
    echo form_close();

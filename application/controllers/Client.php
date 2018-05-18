@@ -13,10 +13,21 @@ public function seDeconnecter()
     $this->session->sess_destroy();
 }
 
- 
+ public function profil()
+ {
+$DonneesInjectees['titredelapage']='PROFIL';
+if($this->input->post('Btnmodif')===null)
+{
+
+
+}
+else
+{
+
+}
+ }
 public function connexion()
 {
-$this->load->helper('form');
 $DonneesInjectees['TitreDeLaPage']='connexion';
 if($this->input->post('btnconnect')===null)
 {
@@ -50,6 +61,7 @@ if($Utilisateurretourner===null)
 else
 {
     $this->load->library('session');
+    $this->session->noclient=$Utilisateurretourner->NOCLIENT;
     $this->session->identifiant=$Utilisateurretourner->PRENOM;
     $this->session->profil=$Utilisateurretourner->PROFIL;
     $DonneesInjectees['identifiant']=$Utilisateurretourner->PRENOM;

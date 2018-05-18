@@ -6,7 +6,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2> <?php echo $TitreDeLaPage?> </h2>
+<h2> <?php echo $Titredelapage?> </h2>
 <div class="table-responsive">
     <table class="table">
     <thead>
@@ -18,7 +18,7 @@
   </tr>
 </thead>
 <tbody>
-<?php foreach($Lesproduits as $unProduit):
+<?php foreach($lesproduits as $unProduit):
 echo '<tr>
 <td><img width="25%" src="'.img_url($unProduit->NOMIMAGE).'"></td>
 <td>' .anchor('Visiteur/VoirunProduit/'.$unProduit->NOPRODUIT,$unProduit->LIBELLE).'</td>
@@ -28,8 +28,7 @@ echo '<tr>
 endforeach ?>
 </tbody>
 </table>
-</div>
 <p> pour avoir le détail d'un produit clique sur le nom du produit </p>
-<p> <?php echo $lienspagination;  ?> </p>
-    </body>
+</div>
+</body>
 </html>
