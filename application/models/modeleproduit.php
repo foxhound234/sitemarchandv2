@@ -13,7 +13,7 @@ class modeleproduit extends CI_Model {
     }
  public function rechercheproduit($nomproduit)
  {
-  $this->db->select('libelle,prix ht,nomimage');
+  $this->db->select('*');
   $this->db->from('produit');
   $this->db->like('libelle',$nomproduit);
  }

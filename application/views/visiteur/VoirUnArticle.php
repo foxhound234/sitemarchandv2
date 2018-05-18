@@ -8,21 +8,16 @@
     <body>
     <div class="container">
  <?php
-   echo '<h2>'.$unProduit['LIBELLE'].'</h2>';
+   echo '<h2>'.$Leproduit['LIBELLE'].'</h2>';
 
-  echo '<p>'.img($unProduit['NOMIMAGE']).'</p>';
+  echo '<p>'.img($Leproduit['NOMIMAGE']).'</p>';
 
-  echo '<p>' .$unProduit['DETAIL'].'</p>';
+  echo '<p>'.$Leproduit['DETAIL'].'</p>';
 
-  echo form_open('Visiteur\VoirunProduit');
-  echo form_label('choisir la quantité','lblquantité');
-  
- echo form_input(array('name'=>'txtquantitestock','type'=>'number', 'min'=>'0','max'=>'100','step'=>'1','required'=>'required')).'<BR>';
+  echo form_open('Visiteur\rechercheproduit');
 
-   echo form_submit('boutonajouter', 'ajouter').'<BR>';
-
+   echo form_submit('btnajouter', 'ajouter').'<BR>';
    echo form_close();
-   
    ?>
     </div>
     </body>

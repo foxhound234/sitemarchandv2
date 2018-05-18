@@ -8,7 +8,6 @@ class Visiteur extends CI_Controller{
        parent::__construct();
        
        $this->load->helper('assets'); // helper 'assets' ajouté a Application
-       $this->load->helper('url');
        $this->load->library('pagination');
  
        $this->load->model('modeleclient'); // chargement modèle, obligatoire
@@ -62,36 +61,52 @@ class Visiteur extends CI_Controller{
         $this->load->view('visiteur/insertionReussie');
        }
     }
+
+    public function rechercheproduit()
+    {
+      if ($this->input->post('btnajouter'))
+    {
+  $leproduit=array(
+    'produit'=>$this->input->post('txtlibelle'));
+       $produit=serialize($leproduit);
+  $DonneesInjectees['lesproduits']= $this->modeleproduit->rechercheproduit($produit);
+   if (empty($DonneesInjectees['lesproduits']))
+   {
+    show_404();
+   }
+   $DonneesInjectees['Titredelapage']='résultat de la recherche';
+   $this->load->view('visiteur/afficherecherche',$DonneesInjectees);
+  }
+}
     public function VoirunProduit($NOPRODUIT=false)
     {
-     $DonneesInjectees['unProduit']=$this->modeleproduit->retournerproduit($NOPRODUIT);
-    
-      if (empty($DonneesInjectees['unProduit']))  
+     $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
+      
+      if (empty($Produitretourne))
       {
        show_404();
       }
-      $DonneesInjectees['TitreDeLaPage'] = $DonneesInjectees['unProduit']['LIBELLE'];
-      if($this->input->post('boutonajouter')===null)
+      $DonneesInjectees['Leproduit']=$this->modeleproduit->retournerproduit($NOPRODUIT);
+       $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
+      $Libelle=$Produitretourne['LIBELLE'];
+      $prixproduit=$Produitretourne['PRIXHT'];
+      if($this->input->post('btnajouter'))
+      {
+        $insertion=array(
+          'id'=>$NOPRODUIT,
+          'qty' => 1,
+          'price'=>$prixproduit,
+          'name'=>$Libelle);
+          var_dump($insertion);
+          $this->cart->insert($insertion);
+          $this->load->view('visiteur/insertionReussie');
+      }
+      else
       {
         $this->load->view('templates/Entete');
         $this->load->view('visiteur/VoirUnArticle', $DonneesInjectees);
         $this->load->view('templates/PiedDePage');
-
       }
-     else
-     {
-      $insertion=array(
-        'rowid'  =>$DonneesInjectees['unProduit']['NOPRODUIT'],
-        'qty'    =>$this->input->post('txtquantitestock'),
-        'price'  => $DonneesInjectees['unProduit']['PRIXHT'],
-        'name'    =>  $DonneesInjectees['unProduit']['LIBELLE']
-      );
-   
-     $this->cart->insert($insertion);
-     $this->load->helper('url');
-     $this->load->view('visiteur/insertionReussie');
-      }
-    
     }
     public function affichagedepanier()
     {

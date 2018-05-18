@@ -14,14 +14,28 @@
        <a href="<?php echo site_url('Admin/ajouterunproduit') ?>">Ajouter un produit</a>&nbsp;&nbsp;
        <?php endif; ?>
        <?php if ($this->session->profil=='C') : ?>
-       <?php endif; ?>
-    
-       <?php else : ?>
-        <a href="<?php echo site_url('Visiteur/connexion') ?>">Se Connecter</a>&nbsp;&nbsp;
-        <?php endif; ?>
-
-        <a href="<?php echo site_url('Visiteur/afficherlesproduits') ?>">Lister les produits</a>&nbsp;&nbsp;
+       <a href="<?php echo site_url('Visiteur/afficherlesproduits') ?>">Lister les produits</a>&nbsp;&nbsp;
     <a href="<?php echo site_url('Visiteur/affichelescategorie') ?>">Lister les categories </a>&nbsp;&nbsp;
     <a href="<?php echo site_url('Visiteur/affichagedepanier') ?>">affiché le panier </a>&nbsp;&nbsp;
+    <?php
+    echo form_open('Visiteur\rechercheproduit');
+    echo form_input('txtlibelle','',array('pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required'));
+   echo form_submit('btnajouter', 'ajouter');
+   echo form_close();?>
+       <?php endif; ?>
+       <?php else : ?>
+        <a href="<?php echo site_url('Client/connexion') ?>">Se Connecter</a>&nbsp;&nbsp;
+        <?php endif; ?>
+        <?php if($this->session->profil==null) : ?>
+     <a href="<?php echo site_url('Visiteur/afficherlesproduits') ?>">Lister les produits</a>&nbsp;&nbsp;
+    <a href="<?php echo site_url('Visiteur/affichelescategorie') ?>">Lister les categories </a>&nbsp;&nbsp;
+    <a href="<?php echo site_url('Visiteur/affichagedepanier') ?>">affiché le panier </a>&nbsp;&nbsp;
+    <a href="<?php echo site_url('Visiteur/ajouterunclient') ?>"> enregistrement </a>&nbsp;&nbsp;
+    <?php
+    echo form_open('Visiteur\rechercheproduit');
+    echo form_input('txtlibelle','',array('pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required'));
+   echo form_submit('btnajouter', 'ajouter');
+   echo form_close();?>
+    <?php endif;?>
 </body>
 </html>
