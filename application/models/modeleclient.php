@@ -21,10 +21,10 @@ public function retournerUtilisateur($pclient)
    // retour sous forme d'objets
 } // retournerUtilisateur
 
- 
-
-
-
-
+ public function modifierClient($pDonneesAmodifier,$id)
+ {
+    $this->db->where('NOCLIENT', $id);
+    $this->db->update('client',$pDonneesAmodifier);
+ }
 
 }

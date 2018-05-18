@@ -16,9 +16,17 @@ public function seDeconnecter()
  public function profil()
  {
 $DonneesInjectees['titredelapage']='PROFIL';
+$Utilisateur=$this->session->noclient;
+$DonneesInjectees['leclient']=$this->modeleclient->retournerUtilisateur($Utilisateur);
 if($this->input->post('Btnmodif')===null)
 {
 
+    $this->load->view('templates/entete');
+
+    $this->load->view('Client/afficheprofil', $DonneesInjectees); // on renvoie le formulaire
+
+    $this->load->view('templates/PiedDePage');
+    
 
 }
 else

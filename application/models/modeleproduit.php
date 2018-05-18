@@ -16,6 +16,7 @@ class modeleproduit extends CI_Model {
   $this->db->select('*');
   $this->db->from('produit');
   $this->db->like('libelle',$nomproduit);
+  return $requete=$this->db->get();
  }
  
 public function retournerproduitcatego($nocategorie,$nombreDeLignesARetourner, $noPremiereLigneARetourner)
