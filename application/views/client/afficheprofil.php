@@ -20,28 +20,27 @@
   echo form_open('Client/profil');
 echo form_label('prenom','lbxPrenom');
 
-echo form_input('txtPrenom','value'=>$leclient['PRENOM').'<BR>';
+echo form_input(array('type'=>'text','name'=>'txtPrenom','value'=>$leclient['PRENOM'] )).'<BR>';
 
 echo form_label('Nom','lbxNom'); // creation d'un label devant la zone de saisie
 
-echo form_input('txtNom',$leclient->NOM).'<BR>';
+echo form_input(array('type'=>'text','name'=>'txtNom','value'=>$leclient['NOM'])).'<BR>';
 echo form_label('adresse', 'lbxadresse');
 
-echo form_input('txtadresse',$leclient->ADRESSE).'<BR>';
+echo form_input(array('type'=>'text','name'=>'txtadresse','value'=>$leclient['ADRESSE'])).'<BR>';
 
 echo form_label('ville', 'lbxVille');
 
-echo form_input('txtVille',$leclient->VILLE).'<BR>';
+echo form_input(array('type'=>'text','name'=>'txtVille','value'=>$leclient['VILLE'])).'<BR>';
 echo form_label('codepostal','lbxcodePostal');
-
-echo form_input('txtcodePostal',$leclient->CODEPOSTAL).'<BR>';
+echo form_input(array('type'=>'number','name'=>'txtcodePostal','value'=>$leclient['CODEPOSTAL'])).'<BR>';
 echo form_label('email', 'lbxemail');
 
-echo form_input('txtEmail',$leclient->EMAIL).'<BR>';
+echo form_input(array('type'=>'email','name'=>'txtEmail','value'=>$leclient['EMAIL'])).'<BR>';
 
 echo form_label('Mot de passe','lbxMdp');
 
-echo form_password('txtMdp',$leclient->MOTSDEPASSE).'<BR>';
+echo form_password(array('type'=>'password','name'=>'txtMdp','value'=>$leclient['MOTSDEPASSE'])).'<BR>';
 
 echo form_submit('submit', 'enregistrement').'<BR>';
 
