@@ -52,8 +52,10 @@ class Admin extends CI_Controller {
    public function listerlesCommande()
    {
     $DonneesInjectees['TitreDeLaPage'] = 'listerlescommande';
-    
-
+    $DonneesInjectees['LesCommandes']=$this->modeleCommande->afficherlescommande();
+    $this->load->view('templates/Entete');
+    $this->load->view('admin/afficherlescommande', $DonneesInjectees);
+    $this->load->view('templates/PiedDePage');
    }
     
 
