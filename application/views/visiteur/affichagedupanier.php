@@ -8,17 +8,15 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php echo form_open('path/to/controller/update/method'); ?>
-
+<?php echo form_open('Visiteur/modifierlepanier');?>
 <table cellpadding="6" cellspacing="1" style="width:100%" border="0">
 
 <tr>
-        <th>QTY</th>
-        <th>Item Description</th>
-        <th style="text-align:right">Item Price</th>
-        <th style="text-align:right">Sub-Total</th>
+        <th>Quantité</th>
+        <th> Description</th>
+        <th style="text-align:right"> prix TTC</th>
+        <th style="text-align:right">Total</th>
 </tr>
-
 <?php $i = 1; ?>
 
 <?php foreach ($this->cart->contents() as $items): ?>
@@ -58,7 +56,19 @@
 </tr>
 
 </table>
-
-<p><?php echo form_submit('', 'Update your Cart'); ?></p>
+<?php
+echo form_submit('btnModifier', 'modifier');
+ echo form_close();?>
+<?php
+ echo form_open('Client/passerCommande');
+ if ($this->session->profil=='C')
+{
+  echo form_submit('btnAchat', 'passer commande'); 
+}
+ echo form_close();
+ ?>
+<?php echo form_open('Visiteur/ajouterunclient');?>
+<p><?php echo form_submit('btnSupprimer', 'Vider le panier'); ?></p>
+ <?Php echo form_close();?>
 </body>
 </html>

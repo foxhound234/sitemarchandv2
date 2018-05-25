@@ -5,7 +5,6 @@ class client extends CI_Controller{
  public function _construct()
  {
   parent::_construct();
-
  }
  
 public function seDeconnecter()
@@ -13,16 +12,19 @@ public function seDeconnecter()
     $this->session->sess_destroy();
 }
 
- public function profil($noClient=false)
+ public function profil()
  {
 $DonneesInjectees['titredelapage']='PROFIL';
-$DonneesInjectees['leclient']=$this->modeleclient->retournerClient($noClient);
+$donnnesprofil=array(
+"NOCLIENT"=>$this->session->noclient
+);
+var_dump($donnnesprofil);
+$DonneesInjectees['leclient']=$this->modeleclient->retournerUtilisateur($donnnesprofil);
 
 if($this->input->post('Btnmodif')===null)
 {
 
     $this->load->view('templates/entete');
-
     $this->load->view('Client/afficheprofil', $DonneesInjectees); // on renvoie le formulaire
     $this->load->view('templates/PiedDePage');
 }
@@ -30,6 +32,38 @@ else
 {
 
 }
+ }
+ public function passerCommande()
+ {
+    $DonneesInjectees['TitreDeLaPage'] ='Panier';
+     if ($this->input->post('btnAchat'))
+     {
+
+        $datetime = date("Y-m-d H:i:s");
+        $Donnesdecommande=array(
+            "DATECOMMANDE"=>$datetime,
+            "NOCLIENT"=>$this->session->noclient
+        );
+        $commande=$this->modeleCommande->AjoutCommande($Donnesdecommande);
+        foreach($this->cart->contents() as $unproduit)
+        {
+        $Donnesdeproduit=array(
+        'NOCOMMANDE'=>$commande,
+        'NOPRODUIT'=>$unproduit['id'],
+         'QUANTITECOMMANDEE'=>$unproduit['qty']
+        );
+        $this->modeleCommande->AjoutLigne($Donnesdeproduit);
+        }
+        $this->load->view('templates/entete');
+        $this->load->view('visiteur/insertionReussie');
+        $this->load->view('templates/piedDePage'); 
+     }
+     else
+     {
+        $this->load->view('templates/entete');
+        $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
+        $this->load->view('templates/piedDePage'); 
+     }
  }
 public function connexion()
 {
@@ -65,7 +99,6 @@ if($Utilisateurretourner===null)
 }
 else
 {
-    $this->load->library('session');
     $this->session->noclient=$Utilisateurretourner->NOCLIENT;
     $this->session->identifiant=$Utilisateurretourner->PRENOM;
     $this->session->profil=$Utilisateurretourner->PROFIL;

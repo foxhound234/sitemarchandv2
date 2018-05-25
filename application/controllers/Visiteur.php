@@ -77,6 +77,24 @@ class Visiteur extends CI_Controller{
    $this->load->view('templates/PiedDePage');
   }
 }
+
+public function viderlepanier()
+{
+  $DonneesInjectees['TitreDeLaPage'] ='Panier';
+  if($this->input->post('btnSupprimer'))
+  {
+    $this->load->view('templates/entete');
+    $this->load->view('visiteur/insertionReussie');
+    $this->load->view('templates/piedDePage');
+   $this->cart->destroy();
+  }
+  else
+  {
+    $this->load->view('templates/entete');
+    $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
+    $this->load->view('templates/piedDePage');
+  }
+}
     public function VoirunProduit($NOPRODUIT=false)
     {
      $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
@@ -90,7 +108,7 @@ class Visiteur extends CI_Controller{
       $DonneesInjectees['Leproduit']=$this->modeleproduit->retournerproduit($NOPRODUIT);
        $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
       $Libelle=$Produitretourne['LIBELLE'];
-      $prixproduit=$Produitretourne['PRIXHT'];
+      $prixproduit=$Produitretourne['PRIXHT']*(($Produitretourne['TAUXTVA']/100)+1);
       if($this->input->post('btnajouter'))
       {
         $insertion=array(
@@ -109,6 +127,30 @@ class Visiteur extends CI_Controller{
         $this->load->view('templates/Entete');
         $this->load->view('visiteur/VoirUnArticle', $DonneesInjectees);
         $this->load->view('templates/PiedDePage');
+      }
+    }
+    public function modifierlepanier()
+    {
+      $DonneesInjectees['TitreDeLaPage'] ='Panier';
+      if($this->input->post('btnModifier'))
+      {
+        $total=$this->cart->total_items();
+       for ($i = 1; $i <=$total ; $i++) {
+        $donnesamodifier=array(
+          'rowid'=>$this->input->post($i.'[rowid]'),
+           'qty'=>$this->input->post($i.'[qty]')
+        );
+        $this->cart->update($donnesamodifier);
+        $this->load->view('templates/entete');
+        $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
+        $this->load->view('templates/piedDePage');
+    }
+      }
+      else
+      {
+        $this->load->view('templates/entete');
+        $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
+        $this->load->view('templates/piedDePage');
       }
     }
     public function affichagedepanier()
