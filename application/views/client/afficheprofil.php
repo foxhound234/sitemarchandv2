@@ -17,7 +17,7 @@
   
   saisies sont réinjectées dans le formulaire */
   
-  echo form_open('Client/profil');
+  echo form_open('Client/profil/'.$this->session->noclient);
 echo form_label('prenom','lbxPrenom');
 
 echo form_input(array('type'=>'text','name'=>'txtPrenom','value'=>$leclient['PRENOM'] )).'<BR>';

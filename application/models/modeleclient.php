@@ -11,7 +11,11 @@ public function insererUnclient($pDonneesAInserer)
 {
     return $this->db->insert('client', $pDonneesAInserer);
 } // insererUnArticle
-
+public function retournerClient($noclient)
+{
+ $requete=$this->db->get_where('client',array('NOCLIENT'=>$noclient));
+ return $requete->row();
+}
 public function retournerUtilisateur($pclient)
 
 {

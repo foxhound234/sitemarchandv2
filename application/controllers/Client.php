@@ -13,12 +13,10 @@ public function seDeconnecter()
     $this->session->sess_destroy();
 }
 
- public function profil()
+ public function profil($noClient=false)
  {
 $DonneesInjectees['titredelapage']='PROFIL';
-$Utilisateur=$this->session->profil;
-var_dump($Utilisateur);
-$DonneesInjectees['leclient']=$this->modeleclient->retournerUtilisateur($Utilisateur);
+$DonneesInjectees['leclient']=$this->modeleclient->retournerClient($noClient);
 
 if($this->input->post('Btnmodif')===null)
 {

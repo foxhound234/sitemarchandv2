@@ -10,9 +10,6 @@ echo form_open('Admin/ajouterunproduit');
  echo form_label('détail du produit :', 'lbldétail');
 
  echo  form_textarea('txtdetail', '',array('required'=>'required')).'<BR>';
-
-
- 
   echo  form_label('prixht :','lblprixht');
   echo  form_input('txtprixht', '',array('pattern'=>".{0,}",'title'=>'le prix doit est uniquement composé de chiffres','required'=>'required')).'<BR>';
 
@@ -40,29 +37,16 @@ echo form_open('Admin/ajouterunproduit');
   echo form_dropdown('txtdispo',$liste,'default',array('required'=>'required')).'<BR>';
 
  echo form_label('Numero de marque :','lblnomarque');
-?>
-<select name "nomarque" required>
-<option value="" selected>choisir une marque</option>
-<?php 
+ $marque=array(
+'1'=>'Sony'
+ );
+ echo form_dropdown('txtNoMarque',$marque, 'default',array('required'=>'required')).'<BR>';
+ $categorie=array(
+   '1'=>'jeuxvidéo'
+ );
+ echo form_label('Numero de Categorie :','lblnocategorie');
+echo form_dropdown('txtNoCategorie',$categorie, 'default',array('required'=>'required')).'<BR>';
 
-foreach ($LesMarques as $UneMarque) {
- echo '<option value="'.$UneMarque['NOMARQUE'].'">'.$UneMarque['NOM'].'</option>';
-
-}
-?>
-</select> <BR>
-<?php
- echo form_label('Numero de categorie:','lblnocategorie');
- ?>
- <select name "nocategorie" required>
-<option value="" selected>choisir une categorie </option>
-<?php
-foreach($LesCategorie as $Unecategorie){
-  echo '<option value="'.$Unecategorie['NOCATEGORIE'].'">'.$Unecategorie['LIBELLE'].'</option>';
-}
-?>
-</select> <BR>
-<?php
 echo form_submit('boutonAjouter', 'ajouter').'<BR>';
 echo form_close();
 ?>

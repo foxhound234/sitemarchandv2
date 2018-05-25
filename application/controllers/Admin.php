@@ -23,7 +23,6 @@ class Admin extends CI_Controller {
     $DonneesInjectees['TitreDeLaPage'] = 'Ajouter un produit';
     $DonneesInjectees['LesMarques'] = $this->modelemarque->Retournermarques();
     $DonneesInjectees['LesCategorie'] = $this->modelecategorie->Retournercategorie();
-  
       if ($this->input->post('boutonAjouter')===null)
       {
         $this->load->view('templates/Entete');
@@ -32,9 +31,6 @@ class Admin extends CI_Controller {
       }
       else
        {
-        $this->load->view('templates/Entete');
-        $this->load->view('admin/ajouterproduit', $DonneesInjectees);
-        $this->load->view('templates/PiedDePage');
         $donneesAInserer=array(
           'LIBELLE' =>$this->input->post('txtlibelle'),
           'DETAIL' =>$this->input->post('txtdetail'),
@@ -44,8 +40,8 @@ class Admin extends CI_Controller {
           'DATEAJOUT'=>$this->input->post('txtdateajout'),
           'NOMIMAGE'=>$this->input->post('txtimage'),
           'DISPONIBLE'=>$this->input->post('txtdispo'),
-          'NOMARQUE'=>$this->input->post('nomarque'),
-          'NOCATEGORIE'=>$this->input->post('nocategorie'),
+          'NOMARQUE'=>$this->input->post('txtNoMarque'),
+          'NOCATEGORIE'=>$this->input->post('txtNoCategorie')
             );
         $this->modeleproduit->insertionproduit($donneesAInserer);
         $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
