@@ -19,19 +19,10 @@ class modeleproduit extends CI_Model {
   return $requete=$this->db->get();
  }
  
-public function retournerproduitcatego($nocategorie,$nombreDeLignesARetourner, $noPremiereLigneARetourner)
-{
-    $this->db->limit($nombreDeLignesARetourner, $noPremiereLigneARetourner);
-  
+public function retournerproduitcatego($nocategorie)
+{  
     $requete=$this->db->get_where('produit',array('NOCATEGORIE'=>$nocategorie));
-
-  if($requete->num_rows() > 0) {
-    foreach($requete->result() as $ligne){
-        $jeuDEnregsitrements[]=$ligne;
-                         }
-         return $jeuDEnregsitrements;    
-                        }
- return false;
+    return $requete->result_array();
 }
 public function ModifierLeStockdunProduit($pNoproduit,$quantitecommandée)
 {

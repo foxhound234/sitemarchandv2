@@ -198,33 +198,11 @@ public function viderlepanier()
  }
  public function afficherlesproduitscategorie($nocategorie=null)
  { 
-  $config=array();
-  $config["base_url"] = site_url('visiteur/listerLesproduitcatego');
-
-  $config["total_rows"] =$this->modeleproduit->nombredeproduitcatego($nocategorie);
-
-  $config["per_page"] = 3;
-
-  $config["uri_segment"] = 3; 
-
-  $config['first_link'] = 'Premier';
-
-  $config['last_link'] = 'Dernier';
-
-  $config['next_link'] = 'Suivant';
-
-  $config['prev_link'] = 'Précédent';
-  $this->pagination->initialize($config);
-  $noPage = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
   $DonneesInjectees['TitreDeLaPage'] = 'Les produit de la catégorie';
   $DonneesInjectees['LaCategorie']= $this->modelecategorie->Retournercategorie($nocategorie);
-  $DonneesInjectees["LesProduits"]=$this->modeleproduit-> retournerproduitcatego($nocategorie,$config["per_page"],$noPage);
-
-  $DonneesInjectees["lienspagination"]=$this->pagination->create_links();
-
+  $DonneesInjectees["LesProduits"]=$this->modeleproduit-> retournerproduitcatego($nocategorie);
   $this->load->view('templates/entete');
-  $this->load->view('visiteur/listerlesproduit',$DonneesInjectees);
+  $this->load->view('visiteur/listerlesproduitcatego',$DonneesInjectees);
    $this->load->view('templates/piedDePage');
 
  }
