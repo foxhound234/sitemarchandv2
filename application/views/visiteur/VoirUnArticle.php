@@ -14,10 +14,18 @@
 
   echo '<p>'.$Leproduit['DETAIL'].'</p>';
 
-  echo form_open('Visiteur\VoirunProduit/'.$Leproduit['NOPRODUIT']);
+  if($Leproduit['QUANTITEENSTOCK']==0 or $Leproduit['DISPONIBLE']==0)
+  {
+   echo '<h2> le produit est indisponible </h2>';
+  }
+  else
+  {
+    echo form_open('Visiteur\VoirunProduit/'.$Leproduit['NOPRODUIT']);
 
-   echo form_submit('btnajouter', 'ajouter').'<BR>';
-   echo form_close();
+    echo form_submit('btnajouter', 'ajouter').'<BR>';
+    echo form_close();
+
+  }
    ?>
     </div>
     </body>

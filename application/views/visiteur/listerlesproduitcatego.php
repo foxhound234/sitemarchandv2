@@ -18,12 +18,12 @@
   </tr>
 </thead>
 <tbody>
-<?php foreach($Lesproduits as $unProduit):
+<?php foreach($LesProduits as $unProduit):
 echo '<tr>
 <td><img width="25%" src="'.img_url($unProduit['NOMIMAGE']).'"></td>
 <td>' .anchor('Visiteur/VoirunProduit/'.$unProduit['NOPRODUIT'],$unProduit['LIBELLE']).'</td>
 <td>' .$unProduit['PRIXHT'].'</td>
-<td>' .$unProduit['QUANTITENNSTOCK'].'</td>
+<td>' .$unProduit['QUANTITEENSTOCK'].'</td>
 </tr>';
 endforeach ?>
 </tbody>
