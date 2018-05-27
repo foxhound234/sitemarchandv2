@@ -62,19 +62,19 @@ class Visiteur extends CI_Controller{
        }
     }
 
-    public function rechercheproduit()
+    public function Rechercheproduit()
     {
       $this->load->helper('form');
       if ($this->input->post('btnajouter'))
     {
   $leproduit=array(
-    'produit'=>$this->input->post('txtlibelle'));
-       $produit=serialize($leproduit);
-  $DonneesInjectees['lesproduits']= $this->modeleproduit->rechercheproduit($produit);
+    'LIBELLE'=>$this->input->post('txtlibelle'));
+    
+  $DonneesInjectees['lesproduits']= $this->modeleproduit->rechercheproduit($leproduit);
    $DonneesInjectees['Titredelapage']='résultat de la recherche';
    $this->load->view('templates/Entete');
    $this->load->view('visiteur/afficherecherche',$DonneesInjectees);
-   $this->load->view('templates/PiedDePage');
+   $this->load->view('templates/PiedDePage'); 
   }
 }
 

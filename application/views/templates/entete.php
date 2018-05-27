@@ -21,8 +21,8 @@
     <a href="<?php echo site_url('Visiteur/affichagedepanier') ?>">affiché le panier </a>&nbsp;&nbsp;
     <a href="<?php echo site_url('Client/profil') ?>">affiché le profil </a>&nbsp;&nbsp;
     <?php
-    echo form_open('Visiteur\rechercheproduit');
-    echo form_input('txtlibelle','',array('pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required'));
+    echo form_open('Visiteur\Rechercheproduit');
+    echo form_input(array('name'=>'txtlibelle','value'=>'','pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required'));
    echo form_submit('btnajouter','recherché');
    echo form_close();?>
        <?php endif; ?>
