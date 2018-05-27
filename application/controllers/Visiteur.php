@@ -25,14 +25,7 @@ class Visiteur extends CI_Controller{
     public function ajouterunclient()
     {
      $DonneesInjectees['TitreDeLaPage'] = 'enregistrement';
-      $this->form_validation->set_rules('txtNom','nom','required');
-      
-      $this->form_validation->set_rules('txtPrenom','prenom','required');
-     
-      $this->form_validation->set_rules('txtEmail','email','required');
-
-      $this->form_validation->set_rules('txtMdp','mdp','required');
-       if($this->form_validation->run()===false)
+       if($this->input->post('btnEnregistrement')===false)
        {
         $this->load->view('templates/entete');
         $this->load->view('visiteur/creercompte', $DonneesInjectees);
