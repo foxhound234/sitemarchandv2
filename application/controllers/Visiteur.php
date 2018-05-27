@@ -165,7 +165,7 @@ public function viderlepanier()
      $config=array();
     $config["base_url"] = site_url('visiteur/listerLesproduit');
     $config["total_rows"] =$this->modeleproduit->nombredeproduit();
-    $config["per_page"] = 3;
+    $config["per_page"] = 5;
     $config["uri_segment"] = 3; 
     $config['first_link'] = 'Premier';
 

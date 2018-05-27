@@ -13,6 +13,7 @@
     <?php if ($this->session->profil=='A') : ?>
        <a href="<?php echo site_url('Admin/ajouterunproduit') ?>">Ajouter un produit</a>&nbsp;&nbsp;
        <a href="<?php echo site_url('Admin/listerlesCommande')?>">afficher les commande</a>&nbsp;&nbsp;
+       <a href="<?php echo site_url('Admin/afficherlesproduits')?>"> modifier les produits</a>&nbsp;&nbsp;
        <?php endif; ?>
        <?php if ($this->session->profil=='C') : ?>
        <a href="<?php echo site_url('Visiteur/afficherlesproduits') ?>">Lister les produits</a>&nbsp;&nbsp;

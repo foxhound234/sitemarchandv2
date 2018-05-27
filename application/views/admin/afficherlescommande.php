@@ -9,7 +9,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php echo form_open('Admin/listerlesCommande');?>
 <h2> <?php echo $TitreDeLaPage?> </h2>
 <div class="table-responsive">
 <table class="table">
@@ -21,9 +20,11 @@
 <th> son adresse </th>
 <th> la quantité commandée </th>
 <th> Datedecommande</th>
+<th> prixttc </th>
 </thead>
 <tbody>
 <?php foreach($LesCommandes as $unCommande):
+echo form_open('Admin/Validerlescommande/'.$unCommande['NOCOMMANDE']);
 echo '<tr>
 <td>'.$unCommande['NOCOMMANDE'].'</td>
 <td>'.$unCommande['LIBELLE'].'</td>
@@ -31,7 +32,10 @@ echo '<tr>
 <td>'.$unCommande['ADRESSE'].'</td>
 <td>'.$unCommande['QUANTITECOMMANDEE'].'</td>
 <td>'.$unCommande['DATECOMMANDE'].'</td> 
-</tr>' ;
+<td>'.$unCommande['PRIXTTC'].'</td>
+<td>'. form_submit('btnTraitement', 'valider la commande').'</td>';
+echo form_close();
+'</tr>';
 endforeach?>
 </tbody
 </table>

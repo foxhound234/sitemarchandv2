@@ -57,9 +57,68 @@ class Admin extends CI_Controller {
     $this->load->view('admin/afficherlescommande', $DonneesInjectees);
     $this->load->view('templates/PiedDePage');
    }
+   public function ModifierunProduit($NOPRODUIT)
+   {
+
+
+   }
+  public function afficherlesproduits()
+  {
+    $config=array();
+    $config["base_url"] = site_url('admin/listerdesproduits');
+    $config["total_rows"] =$this->modeleproduit->nombredeproduit();
+    $config["per_page"] = 5;
+    $config["uri_segment"] = 3; 
+    $config['first_link'] = 'Premier';
+
+    $config['last_link'] = 'Dernier';
+  
+    $config['next_link'] = 'Suivant';
+  
+    $config['prev_link'] = 'Précédent';
     
+    $this->pagination->initialize($config);
 
+    $noPage = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+ $DonneesInjectees['TitreDeLaPage'] = 'Les produits';
+  $DonneesInjectees["Lesproduits"]=$this->modeleproduit->retournerproduitlimite($config["per_page"],$noPage);
+  $DonneesInjectees["lienspagination"]=$this->pagination->create_links();
 
+  $this->load->view('templates/entete');
+
+  $this->load->view('admin/listedesproduits',$DonneesInjectees);
+
+  $this->load->view('templates/piedDePage');
+  }
+  public function Validerlescommande($NOCOMMANDE=null)
+{
+  $DonneesInjectees['TitreDeLaPage'] = 'listerlescommande';
+
+  if ($this->input->post('btnTraitement'))
+{
+  $this->load->view('templates/Entete');
+  $this->load->view('admin/commandetraités');
+  $this->load->view('templates/PiedDePage');
+  
+ $lesproduits=$this->modeleCommande->afficherunecommande($NOCOMMANDE);
+ foreach ($lesproduits as $unproduit)
+ {
+ $donneesamodifier=array(
+ 'NOPRODUIT'=>$unproduit['NOPRODUIT'],
+ 'QUANTITECOMMANDEE'=>$unproduit['QUANTITECOMMANDEE']
+ );
+ $this->modeleproduit->ModifierLeStockdunProduit($donneesamodifier['NOPRODUIT'],$donneesamodifier['QUANTITECOMMANDEE']);
+ }
+ $datedujour= date("Y-m-d H:i:s");
+ $this->modeleCommande->TraitementDeLaCommande($NOCOMMANDE,$datedujour);
+}
+else
+{
+  $this->load->view('templates/Entete');
+  $this->load->view('admin/afficherlescommande');
+  $this->load->view('templates/PiedDePage');
+}
+}
 
 
 

@@ -33,7 +33,12 @@ public function retournerproduitcatego($nocategorie,$nombreDeLignesARetourner, $
                         }
  return false;
 }
-
+public function ModifierLeStockdunProduit($pNoproduit,$quantitecommandée)
+{
+    $this->db->where('NOPRODUIT', $pNoproduit);
+$this->db->set('QUANTITEENSTOCK', '`QUANTITEENSTOCK`-'.$quantitecommandée.'', FALSE); 
+$this->db->update('produit');
+}
 public function nombredeproduitcatego($nocategorie)
 {
          $this->db->count_all('produit');
