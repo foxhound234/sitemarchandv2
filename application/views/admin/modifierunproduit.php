@@ -15,7 +15,7 @@ echo form_open('Admin/ajouterunproduit');
 
  echo form_label('nom du produit :', 'lbllibelle');
 
- echo  form_input(array('name'=>'txtlibelle','value'=>$Leproduit['LIBELLE'],'pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required')).'<BR>';
+ echo  form_input(array('name'=>'txtlibelle','value'=>$Leproduit['LIBELLE'],'pattern'=>'[a-zA-Z0-9]+','title'=>'le produit  doit commencer par une lettre', 'required'=>'required')).'<BR>';
 
  echo form_label('détail du produit :', 'lbldétail');
 
@@ -47,16 +47,17 @@ echo form_open('Admin/ajouterunproduit');
   echo form_dropdown('txtdispo',$liste,'default',array('required'=>'required')).'<BR>';
 
  echo form_label('Numero de marque :','lblnomarque');
- $marque=array(
-'1'=>'Sony'
- );
- echo form_dropdown('txtNoMarque',$marque, 'default',array('required'=>'required')).'<BR>';
- $categorie=array(
-   '1'=>'jeuxvidéo'
- );
+ echo "<select name='txtNoMarque' id='id' required>";
+     foreach ($LesMarques as $uneMarque) {
+         echo "<option value='". $uneMarque['NOMARQUE'] . "'>" . $uneMarque['NOM'] . "</option>";
+     }
+ echo "</select><br/>";
  echo form_label('Numero de Categorie :','lblnocategorie');
-echo form_dropdown('txtNoCategorie',$categorie, 'default',array('required'=>'required')).'<BR>';
-
+echo "<select name='txtNoCategorie' id='id' required>";
+    foreach ($LesCategorie as $uneCategorie) {
+        echo "<option value='". $uneCategorie['NOCATEGORIE'] . "'>" . $uneCategorie['LIBELLE'] . "</option>";
+    }
+echo "</select><br/>";
 echo form_submit('btnModifier', 'modifier').'<BR>';
 echo form_close();
 ?>

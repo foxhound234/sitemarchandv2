@@ -66,6 +66,8 @@ class Admin extends CI_Controller {
      show_404();
     }
     $DonneesInjectees['Leproduit']=$this->modeleproduit->retournerproduit($NOPRODUIT);
+    $DonneesInjectees['LesMarques'] = $this->modelemarque->Retournermarques();
+    $DonneesInjectees['LesCategorie'] = $this->modelecategorie->Retournercategorie();
     $DonneesInjectees['TITREDELAPAGE']=$Produitretourne['LIBELLE'];
     $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
    if($this->input->post('btnModifier'))
