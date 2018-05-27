@@ -39,6 +39,11 @@ public function ModifierLeStockdunProduit($pNoproduit,$quantitecommandée)
 $this->db->set('QUANTITEENSTOCK', '`QUANTITEENSTOCK`-'.$quantitecommandée.'', FALSE); 
 $this->db->update('produit');
 }
+public function Modifierunproduit($donnesamodifier,$pNoproduit)
+{
+    $this->db->where('NOPRODUIT', $pNoproduit);
+$this->db->update('produit',$donnesamodifier);
+}
 public function nombredeproduitcatego($nocategorie)
 {
          $this->db->count_all('produit');

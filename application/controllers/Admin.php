@@ -57,10 +57,43 @@ class Admin extends CI_Controller {
     $this->load->view('admin/afficherlescommande', $DonneesInjectees);
     $this->load->view('templates/PiedDePage');
    }
-   public function ModifierunProduit($NOPRODUIT)
+   public function ModifierunProduit($NOPRODUIT=false)
    {
-
-
+    $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
+      
+    if (empty($Produitretourne))
+    {
+     show_404();
+    }
+    $DonneesInjectees['Leproduit']=$this->modeleproduit->retournerproduit($NOPRODUIT);
+    $DonneesInjectees['TITREDELAPAGE']=$Produitretourne['LIBELLE'];
+    $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
+   if($this->input->post('btnModifier'))
+   {
+    $donneesAInserer=array(
+      'LIBELLE' =>$this->input->post('txtlibelle'),
+      'DETAIL' =>$this->input->post('txtdetail'),
+      'PRIXHT' =>$this->input->post('txtprixht'),
+      'TAUXTVA' =>$this->input->post('txttva'),
+      'QUANTITEENSTOCK'=>$this->input->post('txtquantitestock'),
+      'DATEAJOUT'=>$this->input->post('txtdateajout'),
+      'NOMIMAGE'=>$this->input->post('txtimage'),
+      'DISPONIBLE'=>$this->input->post('txtdispo'),
+      'NOMARQUE'=>$this->input->post('txtNoMarque'),
+      'NOCATEGORIE'=>$this->input->post('txtNoCategorie')
+        );
+        $this->modeleproduit->insertionproduit($donneesAInserer,$NOCOMMANDE);
+        $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
+        $this->load->view('templates/Entete');
+        $this->load->view('visiteur/insertionReussie');
+        $this->load->view('templates/PiedDePage');
+   }
+   else
+   {
+    $this->load->view('templates/Entete');
+    $this->load->view('admin/modifierunproduit', $DonneesInjectees);
+    $this->load->view('templates/PiedDePage');
+   }
    }
   public function afficherlesproduits()
   {
