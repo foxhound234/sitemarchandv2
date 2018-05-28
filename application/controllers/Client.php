@@ -10,8 +10,11 @@ class client extends CI_Controller{
 public function seDeconnecter()
 {
     $this->session->sess_destroy();
-}
 
+ $this->load->view('templates/entete');
+        $this->load->view('visiteur/insertionReussie');
+        $this->load->view('templates/piedDePage');
+    }
  public function profil()
  {
 $DonneesInjectees['titredelapage']='PROFIL';
@@ -54,6 +57,7 @@ else
         );
         $this->modeleCommande->AjoutLigne($Donnesdeproduit);
         }
+        $this->cart->destroy();
         $this->load->view('templates/entete');
         $this->load->view('visiteur/insertionReussie');
         $this->load->view('templates/piedDePage'); 

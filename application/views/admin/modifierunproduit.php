@@ -13,7 +13,7 @@
 <body>
 <h2><?php echo $TITREDELAPAGE ?></h2>
 <?php
-echo form_open('Admin/ajouterunproduit');
+echo form_open('Admin/ModifierunProduit/'.$Leproduit['NOPRODUIT']);
 
  echo form_label('nom du produit :', 'lbllibelle');
 

@@ -35,6 +35,7 @@ public function Modifierunproduit($donnesamodifier,$pNoproduit)
 {
     $this->db->where('NOPRODUIT', $pNoproduit);
 $this->db->update('produit',$donnesamodifier);
+
 }
 public function nombredeproduitcatego($nocategorie)
 {

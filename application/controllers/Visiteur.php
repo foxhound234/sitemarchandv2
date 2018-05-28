@@ -25,40 +25,41 @@ class Visiteur extends CI_Controller{
     public function ajouterunclient()
     {
      $DonneesInjectees['TitreDeLaPage'] = 'enregistrement';
-       if($this->input->post('btnEnregistrement')===false)
+       if($this->input->post('btnEnregistrement'))
+       {
+        $client=array(
+          'nom' => $this->input->post('txtNom'),
+
+          'prenom' => $this->input->post('txtPrenom'),
+
+          'adresse'=>$this->input->post('txtadresse'),
+
+          'ville'=>$this->input->post('txtVille'),
+
+          'codePostal'=>$this->input->post('txtcodePostal'),
+
+          'email'=>$this->input->post('txtEmail'),
+
+          'motdePasse'=>$this->input->post('txtMdp'),
+           'profil'=>'C'
+          ); 
+      $this->modeleclient->insererUnclient($client);
+      $this->load->helper('url');// helper chargé pour utilisation de site_url (dans la vue)
+      $this->load->view('visiteur/insertionReussie');
+       }
+       else
        {
         $this->load->view('templates/entete');
         $this->load->view('visiteur/creercompte', $DonneesInjectees);
         $this->load->view('templates/piedDePage');
        }
-       else
-       {
-         $client=array(
-            'nom' => $this->input->post('txtNom'),
-
-            'prenom' => $this->input->post('txtPrenom'),
-
-            'adresse'=>$this->input->post('txtadresse'),
-
-            'ville'=>$this->input->post('txtVille'),
-
-            'codePostal'=>$this->input->post('txtcodePostal'),
-
-            'email'=>$this->input->post('txtEmail'),
-
-            'motdePasse'=>$this->input->post('txtMdp'),
-             'profil'=>'C'
-            ); 
-        $this->modeleclient->insererUnclient($client);
-        $this->load->helper('url');// helper chargé pour utilisation de site_url (dans la vue)
-        $this->load->view('visiteur/insertionReussie');
        }
-    }
+    
 
     public function Rechercheproduit()
     {
       $this->load->helper('form');
-      if ($this->input->post('btnajouter'))
+      if ($this->input->post('btnrecherche'))
     {
   $leproduit=array(
     'LIBELLE'=>$this->input->post('txtlibelle'));

@@ -23,7 +23,7 @@
     <?php
     echo form_open('Visiteur\Rechercheproduit');
     echo form_input(array('name'=>'txtlibelle','value'=>'','pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required'));
-   echo form_submit('btnajouter','recherché');
+   echo form_submit('btnrecherche','recherché');
    echo form_close();?>
        <?php endif; ?>
        <?php else : ?>
@@ -37,7 +37,7 @@
     <?php
     echo form_open('Visiteur\rechercheproduit');
     echo form_input('txtlibelle','',array('pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required'));
-   echo form_submit('btnajouter', 'ajouter');
+   echo form_submit('btnrecherche', 'recherché');
    echo form_close();?>
     <?php endif;?>
 </body>

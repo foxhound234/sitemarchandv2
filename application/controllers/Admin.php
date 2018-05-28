@@ -72,7 +72,7 @@ class Admin extends CI_Controller {
     $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
    if($this->input->post('btnModifier'))
    {
-    $donneesAInserer=array(
+    $donnesamodifier=array(
       'LIBELLE' =>$this->input->post('txtlibelle'),
       'DETAIL' =>$this->input->post('txtdetail'),
       'PRIXHT' =>$this->input->post('txtprixht'),
@@ -84,7 +84,7 @@ class Admin extends CI_Controller {
       'NOMARQUE'=>$this->input->post('txtNoMarque'),
       'NOCATEGORIE'=>$this->input->post('txtNoCategorie')
         );
-        $this->modeleproduit->insertionproduit($donneesAInserer,$NOPRODUIT);
+        $this->modeleproduit->Modifierunproduit($donnesamodifier,$NOPRODUIT);
         $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
         $this->load->view('templates/Entete');
         $this->load->view('visiteur/insertionReussie');
