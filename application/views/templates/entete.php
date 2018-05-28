@@ -21,7 +21,7 @@
     <a href="<?php echo site_url('Visiteur/affichagedepanier') ?>">affiché le panier </a>&nbsp;&nbsp;
     <a href="<?php echo site_url('Client/profil') ?>">affiché le profil </a>&nbsp;&nbsp;
     <?php
-    echo form_open('Visiteur\Rechercheproduit');
+    echo form_open('Visiteur/Recherchedeproduit');
     echo form_input(array('name'=>'txtlibelle','value'=>'','pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required'));
    echo form_submit('btnrecherche','recherché');
    echo form_close();?>
@@ -35,7 +35,7 @@
     <a href="<?php echo site_url('Visiteur/affichagedepanier') ?>">affiché le panier </a>&nbsp;&nbsp;
     <a href="<?php echo site_url('Visiteur/ajouterunclient') ?>"> enregistrement </a>&nbsp;&nbsp;
     <?php
-    echo form_open('Visiteur\rechercheproduit');
+    echo form_open('Visiteur\Recherche');
     echo form_input('txtlibelle','',array('pattern'=>'^[a-zA-Z][a-zA-Z0-9]*','title'=>'le produit  doit commencer par une lettre', 'required'=>'required'));
    echo form_submit('btnrecherche', 'recherché');
    echo form_close();?>

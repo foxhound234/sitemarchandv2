@@ -16,7 +16,7 @@ class modeleproduit extends CI_Model {
  $this->db->limit($nombreDeLignesARetourner, $noPremiereLigneARetourner);
   $this->db->select('*');
   $this->db->from('produit');
-  $this->db->like('LIBELLE',$nomproduit['LIBELLE']);
+  $this->db->like('LIBELLE',$nomproduit);
    $query = $this->db->get();
    if($query->num_rows()>0)
    {
@@ -63,7 +63,7 @@ public function nombredeproduitcatego($nocategorie)
      return $this->db->count_all("produit"); 
      }
     $this->db->from('produit');
-    $this->db->like('LIBELLE',$Nomproduit['LIBELLE']);
+    $this->db->like('LIBELLE',$Nomproduit);
     $requete=$this->db->count_all_results();
     return $requete;
  }

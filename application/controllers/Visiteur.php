@@ -65,20 +65,26 @@ class Visiteur extends CI_Controller{
         $this->load->view('templates/piedDePage');
        }
        }
-    
-
-    public function Rechercheproduit()
+    public function recherche()
     {
-      $this->load->helper('form');
       if ($this->input->post('btnrecherche'))
+      {
+        $recherche=$this->input->post('txtlibelle');
+        
+        redirect('Visiteur/Recherchedeproduit/'.$recherche);
+        
+      }
+    }
+
+    public function Recherchedeproduit($Recherche=NULL)
     {
-      $leproduit=array(
-        'LIBELLE'=>$this->input->post('txtlibelle'));
+      if (!($Recherche==null)&& !($Recherche==""))
+    {
       $config=array();
-      $config["base_url"] = site_url('Visiteur/Rechercheproduit');
-      $config["total_rows"] =$this->modeleproduit->nombredeproduit($leproduit);
+      $config["base_url"] = site_url('Visiteur/Recherchedeproduit/'.$Recherche);
+      $config["total_rows"] =$this->modeleproduit->nombredeproduit($Recherche);
       $config["per_page"] = 5;
-      $config["uri_segment"] = 3; 
+      $config["uri_segment"] = 4; 
       $config['first_link'] = 'Premier';
   
       $config['last_link'] = 'Dernier';
@@ -87,8 +93,9 @@ class Visiteur extends CI_Controller{
     
       $config['prev_link'] = 'Précédent';
       $this->pagination->initialize($config);
-      $noPage = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-  $DonneesInjectees['lesproduits']= $this->modeleproduit->rechercheproduit($leproduit,$config["per_page"],$noPage);
+      $noPage = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+  $DonneesInjectees['lesproduits']= $this->modeleproduit->rechercheproduit($Recherche,$config["per_page"],$noPage);
+
    $DonneesInjectees['Titredelapage']='résultat de la recherche';
    $DonneesInjectees['lienspagination']=$this->pagination->create_links();
   
@@ -98,23 +105,6 @@ class Visiteur extends CI_Controller{
   }
 }
 
-public function viderlepanier()
-{
-  $DonneesInjectees['TitreDeLaPage'] ='Panier';
-  if($this->input->post('btnSupprimer'))
-  {
-    $this->load->view('templates/entete');
-    $this->load->view('visiteur/insertionReussie');
-    $this->load->view('templates/piedDePage');
-   $this->cart->destroy();
-  }
-  else
-  {
-    $this->load->view('templates/entete');
-    $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
-    $this->load->view('templates/piedDePage');
-  }
-}
     public function VoirunProduit($NOPRODUIT=false)
     {
      $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
