@@ -31,6 +31,6 @@ endforeach ?>
 </table>
 </div>
 <p> pour avoir le détail d'un produit clique sur le nom du produit </p>
-<p> <?php echo $lienspagination;  ?> </p>
+<p> <?php echo $lienspagination; ?> </p>
     </body>
 </html>

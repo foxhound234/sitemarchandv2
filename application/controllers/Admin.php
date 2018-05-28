@@ -100,7 +100,7 @@ class Admin extends CI_Controller {
   public function afficherlesproduits()
   {
     $config=array();
-    $config["base_url"] = site_url('admin/listerdesproduits');
+    $config["base_url"] = site_url('Admin/afficherlesproduits');
     $config["total_rows"] =$this->modeleproduit->nombredeproduit();
     $config["per_page"] = 5;
     $config["uri_segment"] = 3; 

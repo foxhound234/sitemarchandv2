@@ -29,6 +29,7 @@ endforeach ?>
 </tbody>
 </table>
 <p> pour avoir le détail d'un produit clique sur le nom du produit </p>
+<p> <?php echo $lienspagination; ?> </p>
 </div>
 </body>
 </html>

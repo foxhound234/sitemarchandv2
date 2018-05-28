@@ -11,14 +11,24 @@ class modeleproduit extends CI_Model {
     {
     return $this->db->insert('produit',$pDonneesAInserer);
     }
- public function rechercheproduit($nomproduit)
+ public function rechercheproduit($nomproduit,$nombreDeLignesARetourner, $noPremiereLigneARetourner)
  {
+ $this->db->limit($nombreDeLignesARetourner, $noPremiereLigneARetourner);
   $this->db->select('*');
   $this->db->from('produit');
   $this->db->like('LIBELLE',$nomproduit['LIBELLE']);
    $query = $this->db->get();
-  return $query->result_array();
- }
+   if($query->num_rows()>0)
+   {
+    foreach ($query->result_array() as $ligne) {
+
+        $jeuDEnregsitrements[] = $ligne;
+        
+        }
+        return $jeuDEnregsitrements;
+   }
+   return false;
+}
  
 public function retournerproduitcatego($nocategorie)
 {  
@@ -39,16 +49,23 @@ $this->db->update('produit',$donnesamodifier);
 }
 public function nombredeproduitcatego($nocategorie)
 {
-         $this->db->count_all('produit');
+         $this->db->from('produit');
          $this->db->where('NOCATEGORIE',$nocategorie);
-         $requete=$this->db->get();
-         return $requete->row_array();
+         $requete=$this->db->count_all_results();
+         return $requete;
 }
 
 
- public function nombredeproduit()
+ public function nombredeproduit($Nomproduit= FALSE)
  {
-    return $this->db->count_all("produit");
+     if($Nomproduit===false)
+     {
+     return $this->db->count_all("produit"); 
+     }
+    $this->db->from('produit');
+    $this->db->like('LIBELLE',$Nomproduit['LIBELLE']);
+    $requete=$this->db->count_all_results();
+    return $requete;
  }
 
 	public function retournerproduit($pNoproduit)

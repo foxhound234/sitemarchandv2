@@ -61,11 +61,26 @@ class Visiteur extends CI_Controller{
       $this->load->helper('form');
       if ($this->input->post('btnrecherche'))
     {
-  $leproduit=array(
-    'LIBELLE'=>$this->input->post('txtlibelle'));
+      $leproduit=array(
+        'LIBELLE'=>$this->input->post('txtlibelle'));
+      $config=array();
+      $config["base_url"] = site_url('Visiteur/Rechercheproduit');
+      $config["total_rows"] =$this->modeleproduit->nombredeproduit($leproduit);
+      $config["per_page"] = 5;
+      $config["uri_segment"] = 3; 
+      $config['first_link'] = 'Premier';
+  
+      $config['last_link'] = 'Dernier';
     
-  $DonneesInjectees['lesproduits']= $this->modeleproduit->rechercheproduit($leproduit);
+      $config['next_link'] = 'Suivant';
+    
+      $config['prev_link'] = 'Précédent';
+      $this->pagination->initialize($config);
+      $noPage = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+  $DonneesInjectees['lesproduits']= $this->modeleproduit->rechercheproduit($leproduit,$config["per_page"],$noPage);
    $DonneesInjectees['Titredelapage']='résultat de la recherche';
+   $DonneesInjectees['lienspagination']=$this->pagination->create_links();
+  
    $this->load->view('templates/Entete');
    $this->load->view('visiteur/afficherecherche',$DonneesInjectees);
    $this->load->view('templates/PiedDePage'); 
