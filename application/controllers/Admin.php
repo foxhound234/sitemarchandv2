@@ -68,7 +68,7 @@ class Admin extends CI_Controller {
     $DonneesInjectees['Leproduit']=$this->modeleproduit->retournerproduit($NOPRODUIT);
     $DonneesInjectees['LesMarques'] = $this->modelemarque->Retournermarques();
     $DonneesInjectees['LesCategorie'] = $this->modelecategorie->Retournercategorie();
-    $DonneesInjectees['TITREDELAPAGE']=$Produitretourne['LIBELLE'];
+    $DonneesInjectees['TitredeLaPage']=$Produitretourne['LIBELLE'];
     $Produitretourne=$this->modeleproduit->retournerproduit($NOPRODUIT);
    if($this->input->post('btnModifier'))
    {
@@ -93,7 +93,7 @@ class Admin extends CI_Controller {
    else
    {
     $this->load->view('templates/Entete');
-    $this->load->view('admin/InsertionReussie', $DonneesInjectees);
+    $this->load->view('admin/modifierunproduit', $DonneesInjectees);
     $this->load->view('templates/PiedDePage');
    }
    }

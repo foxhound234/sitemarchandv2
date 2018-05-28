@@ -41,7 +41,8 @@
                         <?php endif; ?>
 
                 </td>
-                 <?php echo form_open('Admin\supprimerunproduit/'.$items['rowid']);?>
+                <?php echo form_close(); ?>
+                 <?php echo form_open('Visiteur\supprimerunproduit/'.$items['rowid']);?>
                 <td><?php echo form_submit('btnSupprimer', 'enlevé du panier'); ?>   </td>
                 <?php echo form_close(); ?>
                 <td style="text-align:right"><?php echo $this->cart->format_number($items['price']); ?></td>
@@ -70,8 +71,5 @@ echo form_submit('btnModifier', 'modifier');
 }
  echo form_close();
  ?>
-<?php echo form_open('Visiteur/ajouterunclient');?>
-<p><?php echo form_submit('btnSupprimer', 'Vider le panier'); ?></p>
- <?Php echo form_close();?>
 </body>
 </html>

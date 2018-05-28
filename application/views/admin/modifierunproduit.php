@@ -11,7 +11,7 @@
     <script src="main.js"></script>
 </head>
 <body>
-<h2><?php echo $TITREDELAPAGE ?></h2>
+<h2><?php echo $TitredeLaPage ?></h2>
 <?php
 echo form_open('Admin/ModifierunProduit/'.$Leproduit['NOPRODUIT']);
 
