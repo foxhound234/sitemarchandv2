@@ -6,6 +6,8 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
@@ -37,7 +39,7 @@ echo form_open('Admin/ajouterunproduit');
   
   echo form_label('dateajout', 'lbldateajout');
   
-  echo form_input('txtdateajout', '',array('type'=>'date','name'=>'txtdateajout','value'=>$Leproduit['DATEAJOUT'],'required'=>'required')).'<BR>';
+  echo form_input(array('type'=>'date','name'=>'txtdateajout','value'=>$Leproduit['DATEAJOUT'],'class'=>'clearBtn','required'=>'required')).'<BR>';
   
   echo form_label('disponibilité', 'lbldispo');
   $liste=array(

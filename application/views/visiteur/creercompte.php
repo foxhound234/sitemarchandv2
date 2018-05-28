@@ -1,3 +1,16 @@
+<<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    
 <h2><?php echo $TitreDeLaPage ?></h2>
 
 <?php
@@ -39,3 +52,5 @@ echo form_submit('btnEnregistrement', 'enregistrement').'<BR>';
 
 echo form_close();
 ?>
+</body>
+</html>

@@ -84,7 +84,7 @@ class Admin extends CI_Controller {
       'NOMARQUE'=>$this->input->post('txtNoMarque'),
       'NOCATEGORIE'=>$this->input->post('txtNoCategorie')
         );
-        $this->modeleproduit->insertionproduit($donneesAInserer,$NOCOMMANDE);
+        $this->modeleproduit->insertionproduit($donneesAInserer,$NOPRODUIT);
         $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
         $this->load->view('templates/Entete');
         $this->load->view('visiteur/insertionReussie');
