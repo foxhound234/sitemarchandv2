@@ -21,7 +21,18 @@ class Visiteur extends CI_Controller{
 
        $this->load->library('cart');
     } // __construct
+    public function supprimerunproduit($rowid)
+    {
+      $DonneesInjectees['TitreDeLaPage'] ='Panier';
+     if($this->input->post('btnSupprimer'))
+        {
+        $this->cart->remove($rowid);
 
+        $this->load->view('templates/entete');
+        $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
+        $this->load->view('templates/piedDePage'); 
+        }
+    }
     public function ajouterunclient()
     {
      $DonneesInjectees['TitreDeLaPage'] = 'enregistrement';

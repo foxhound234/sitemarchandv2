@@ -57,6 +57,15 @@ else
         );
         $this->modeleCommande->AjoutLigne($Donnesdeproduit);
         }
+        $this->email->From('morganlb@protonmail.com');
+        $this->email->to($this->session->email);
+        $this->email->subject('Commande est en traitement');
+        $this->email->message('Votre Commande sera traités 
+        par un administrateur et vous serez livrez sous 48H après le traitement');
+        $this->email->send();
+        if (!$this->email->send()){
+            $this->email->print_debugger();
+        }
         $this->cart->destroy();
         $this->load->view('templates/entete');
         $this->load->view('visiteur/insertionReussie');
@@ -103,6 +112,8 @@ if($Utilisateurretourner===null)
 }
 else
 {
+
+    $this->session->email=$Utilisateurretourner->EMAIL;
     $this->session->noclient=$Utilisateurretourner->NOCLIENT;
     $this->session->identifiant=$Utilisateurretourner->PRENOM;
     $this->session->profil=$Utilisateurretourner->PROFIL;
