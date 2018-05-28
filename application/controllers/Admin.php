@@ -10,10 +10,10 @@ class Admin extends CI_Controller {
         $this->load->model('');
         $this->load->model('modelemarque');
          $this->load->library('session');
-       if ($this->session->statut=='c') // c : statut visiteur
+         $this->load->helper('url');
+       if ($this->session->profil=='C'or $this->session->profil==null) // c : statut visiteur
        {
-    $this->load->helper('url'); // pour utiliser redirect
-    redirect('/client/connexion.php'); // pas les droits : redirection vers connexion
+    redirect('Client/connexion'); // pas les droits : redirection vers connexion
        }
       
     } // __construct
@@ -93,7 +93,7 @@ class Admin extends CI_Controller {
    else
    {
     $this->load->view('templates/Entete');
-    $this->load->view('admin/modifierunproduit', $DonneesInjectees);
+    $this->load->view('admin/InsertionReussie', $DonneesInjectees);
     $this->load->view('templates/PiedDePage');
    }
    }

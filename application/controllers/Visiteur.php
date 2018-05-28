@@ -135,17 +135,12 @@ public function viderlepanier()
            'qty'=>$this->input->post($i.'[qty]')
         );
         $this->cart->update($donnesamodifier);
-        $this->load->view('templates/entete');
-        $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
-        $this->load->view('templates/piedDePage');
-    }
       }
-      else
-      {
         $this->load->view('templates/entete');
         $this->load->view('visiteur/affichagedupanier', $DonneesInjectees);
         $this->load->view('templates/piedDePage');
       }
+   
     }
     public function affichagedepanier()
     {
@@ -157,7 +152,7 @@ public function viderlepanier()
     public function afficherlesproduits()
     {
      $config=array();
-    $config["base_url"] = site_url('visiteur/listerLesproduit');
+    $config["base_url"] = site_url('Visiteur/afficherlesproduits');
     $config["total_rows"] =$this->modeleproduit->nombredeproduit();
     $config["per_page"] = 5;
     $config["uri_segment"] = 3; 

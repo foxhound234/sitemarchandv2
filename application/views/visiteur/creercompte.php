@@ -39,7 +39,7 @@ echo form_label('ville', 'lbxVille');
 echo form_input(array('name'=>'txtVille','value'=>'','pattern'=>'[a-zA-Z0-9]+','required'=>'required')).'<BR>';
 echo form_label('codepostal','lbxcodePostal');
 
-echo form_input(array('name'=>'txtcodePostal','value'=>'','pattern'=>'[0-9]{4}','required'=>'required')).'<BR>';
+echo form_input(array('name'=>'txtcodePostal','value'=>'','pattern'=>'[0-9]','required'=>'required')).'<BR>';
 echo form_label('email', 'lbxemail');
 
 echo form_input(array('name'=>'txtEmail','value'=>'','type'=>'email','required'=>'required')).'<BR>';

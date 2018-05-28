@@ -42,7 +42,7 @@ public function nombredeproduitcatego($nocategorie)
          $this->db->count_all('produit');
          $this->db->where('NOCATEGORIE',$nocategorie);
          $requete=$this->db->get();
-         return $requete;
+         return $requete->row_array();
 }
 
 
