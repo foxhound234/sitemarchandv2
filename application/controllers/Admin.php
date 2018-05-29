@@ -51,11 +51,20 @@ class Admin extends CI_Controller {
    }
    public function listerlesCommande()
    {
-    $DonneesInjectees['TitreDeLaPage'] = 'listerlescommande';
+    $DonneesInjectees['TitreDeLaPage'] = 'listerlescommandes';
     $DonneesInjectees['LesCommandes']=$this->modeleCommande->afficherlescommande();
     $this->load->view('templates/Entete');
     $this->load->view('admin/afficherlescommande', $DonneesInjectees);
     $this->load->view('templates/PiedDePage');
+   }
+   public function AfficherDetaildeLaCommande($NOCOMMANDE=false)
+   {
+     $DonneesInjectees['TitreDeLaPage']='La Commande';
+     $DonneesInjectees['LaCommande']=$this->modeleCommande->afficherunecommande($NOCOMMANDE);
+     $DonneesInjectees['PRIXTOTAL']=$this->modeleCommande->CalculPrixTotal($NOCOMMANDE);
+     $this->load->view('templates/Entete');
+     $this->load->view('admin/affichédétailcommande', $DonneesInjectees);
+     $this->load->view('templates/PiedDePage');
    }
    public function ModifierunProduit($NOPRODUIT=false)
    {

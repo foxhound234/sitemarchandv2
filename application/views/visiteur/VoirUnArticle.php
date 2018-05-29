@@ -9,11 +9,12 @@
     <body>
     <div class="container">
  <?php
-   echo '<h2>'.$Leproduit['LIBELLE'].'</h2>';
+ 
+ echo '<h2>'.$unProduit['LIBELLE'].'</h2>';
 
-  echo '<p>'.img($Leproduit['NOMIMAGE']).'</p>';
-
-  echo '<p>'.$Leproduit['DETAIL'].'</p>';
+ echo '<p>'.img($unProduit['NOMIMAGE']).'</p>';
+ 
+  echo '<p>'.['DETAIL'].'</p>';
 
   if($Leproduit['QUANTITEENSTOCK']==0 or $Leproduit['DISPONIBLE']==0)
   {

@@ -16,29 +16,17 @@
 <thead>
 <tr>
 <th> le numéro de commande</th>
-<th> le nom du produit </th>
-<th> le nom et prénom du client </th>
-<th> son adresse </th>
-<th> la quantité commandée </th>
 <th> Datedecommande</th>
-<th> prixttc </th>
 </thead>
 <tbody>
 <?php foreach($LesCommandes as $unCommande):
-echo form_open('Admin/Validerlescommande/'.$unCommande['NOCOMMANDE']);
 echo '<tr>
 <td>'.$unCommande['NOCOMMANDE'].'</td>
-<td>'.$unCommande['LIBELLE'].'</td>
-<td>'.$unCommande['NOM'] ,$unCommande['PRENOM'].'</td>
-<td>'.$unCommande['ADRESSE'].'</td>
-<td>'.$unCommande['QUANTITECOMMANDEE'].'</td>
 <td>'.$unCommande['DATECOMMANDE'].'</td> 
-<td>'.$unCommande['PRIXTTC'].'</td>
-<td>'. form_submit('btnTraitement', 'valider la commande').'</td>';
-echo form_close();
-'</tr>';
+<td>' .anchor('Admin/AfficherDetaildeLaCommande/'.$unCommande['NOCOMMANDE'],'Voir Le Detail de la commande').'</td>
+ </tr>';
 endforeach?>
-</tbody
+</tbody>
 </table>
 </div>
 </body>

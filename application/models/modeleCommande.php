@@ -17,7 +17,7 @@ class modeleCommande extends CI_Model {
   }
   public function afficherlescommande()
   {
-   $requete="select commande.NOCOMMANDE,NOM,PRENOM,ADRESSE,DATECOMMANDE,QUANTITECOMMANDEE,LIBELLE,ROUND(SUM(produit.PRIXHT*((produit.TAUXTVA/100)+1)*ligne.QUANTITECOMMANDEE))AS PRIXTTC
+   $requete="select commande.NOCOMMANDE,DATECOMMANDE
    FROM client,commande,ligne,produit 
    WHERE client.noclient=commande.NOCLIENT
    AND ligne.NOCOMMANDE=commande.NOCOMMANDE
@@ -29,8 +29,26 @@ class modeleCommande extends CI_Model {
   }
   public function afficherunecommande($NOCOMMANDE)
   {
-    $requete = $this->db->get_where('ligne', array('NOCOMMANDE' => $NOCOMMANDE));
-    return $requete->result_array();
+     $requete="select distinct commande.NOCOMMANDE,ligne.NOPRODUIT,NOM,PRENOM,ADRESSE,EMAIL,DATECOMMANDE,QUANTITECOMMANDEE,LIBELLE,ROUND(SUM(produit.PRIXHT*((produit.TAUXTVA/100)+1)*ligne.QUANTITECOMMANDEE))AS PRIXTTC
+    FROM client,commande,ligne,produit 
+    WHERE client.noclient=commande.NOCLIENT
+    AND ligne.NOCOMMANDE=commande.NOCOMMANDE
+    AND ligne.NOPRODUIT=produit.NOPRODUIT
+    AND ligne.NOCOMMANDE=".$NOCOMMANDE."
+    group by ligne.NOCOMMANDE,ligne.NOPRODUIT";
+    $query = $this->db->query($requete);
+    return $query->result_array();
+  }
+  public function CalculPrixTotal($NOCOMMANDE)
+  {
+    $requete="select ROUND(SUM(produit.PRIXHT*((produit.TAUXTVA/100)+1)*ligne.QUANTITECOMMANDEE))AS PRIXTTC
+    FROM commande,ligne,produit 
+    WHERE  ligne.NOCOMMANDE=commande.NOCOMMANDE
+    AND ligne.NOPRODUIT=produit.NOPRODUIT
+    and ligne.NOCOMMANDE=".$NOCOMMANDE."
+    GROUP by ligne.NOCOMMANDE";
+    $query = $this->db->query($requete);
+    return $query->row_array();
   }
   public function TraitementDeLaCommande($NOCOMMANDE,$dateTraitement)
   {
