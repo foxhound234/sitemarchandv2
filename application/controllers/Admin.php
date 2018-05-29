@@ -86,9 +86,7 @@ class Admin extends CI_Controller {
         );
         $this->modeleproduit->Modifierunproduit($donnesamodifier,$NOPRODUIT);
         $this->load->helper('url'); // helper chargé pour utilisation de site_url (dans la vue)
-        $this->load->view('templates/Entete');
-        $this->load->view('visiteur/insertionReussie');
-        $this->load->view('templates/PiedDePage');
+        redirect('Admin/afficherlesproduits');
    }
    else
    {

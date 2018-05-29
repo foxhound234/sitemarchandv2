@@ -11,9 +11,7 @@ public function seDeconnecter()
 {
     $this->session->sess_destroy();
 
- $this->load->view('templates/entete');
-        $this->load->view('visiteur/insertionReussie');
-        $this->load->view('templates/piedDePage');
+    redirect('Client/connexion');
     }
  public function profil()
  {
