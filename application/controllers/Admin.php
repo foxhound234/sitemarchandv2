@@ -63,7 +63,7 @@ class Admin extends CI_Controller {
      $DonneesInjectees['LaCommande']=$this->modeleCommande->afficherunecommande($NOCOMMANDE);
      $DonneesInjectees['PRIXTOTAL']=$this->modeleCommande->CalculPrixTotal($NOCOMMANDE);
      $this->load->view('templates/Entete');
-     $this->load->view('admin/affichédétailcommande', $DonneesInjectees);
+     $this->load->view('admin/affichedetailcommande', $DonneesInjectees);
      $this->load->view('templates/PiedDePage');
    }
    public function ModifierunProduit($NOPRODUIT=false)
