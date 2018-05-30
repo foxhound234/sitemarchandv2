@@ -10,13 +10,13 @@
     <div class="container">
  <?php
  
- echo '<h2>'.$unProduit['LIBELLE'].'</h2>';
+ echo '<h2>'.$Leproduit['LIBELLE'].'</h2>';
 
- echo '<p>'.img($unProduit['NOMIMAGE']).'</p>';
+ echo '<p>'.img($Leproduit['NOMIMAGE']).'</p>';
  
-  echo '<p>'.['DETAIL'].'</p>';
+  echo '<p>'.$Leproduit['DETAIL'].'</p>';
 
-  if($Leproduit['QUANTITEENSTOCK']==0 or $Leproduit['DISPONIBLE']==0)
+  if($Leproduit['QUANTITEENSTOCK']<=0 or $Leproduit['DISPONIBLE']==0)
   {
    echo '<h2> le produit est indisponible </h2>';
   }

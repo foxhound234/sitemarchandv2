@@ -17,7 +17,7 @@ class modeleCommande extends CI_Model {
   }
   public function afficherlescommande()
   {
-   $requete="select commande.NOCOMMANDE,DATECOMMANDE
+   $requete="select distinct commande.NOCOMMANDE,DATECOMMANDE
    FROM client,commande,ligne,produit 
    WHERE client.noclient=commande.NOCLIENT
    AND ligne.NOCOMMANDE=commande.NOCOMMANDE

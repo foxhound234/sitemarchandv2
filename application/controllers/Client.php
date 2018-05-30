@@ -55,8 +55,11 @@ else
         );
         $this->modeleCommande->AjoutLigne($Donnesdeproduit);
         }
-        $this->email->From('morganlb@protonmail.com');
-        $this->email->to($this->session->email);
+        $email=array(
+            'EMAIL'=>$this->session->email
+        );
+        $this->email->From('morganlb347@gmail.com');
+        $this->email->to('morganlb@hotmail.fr');
         $this->email->subject('Commande est en traitement');
         $this->email->message('Votre Commande sera traités 
         par un administrateur et vous serez livrez sous 48H après le traitement');
